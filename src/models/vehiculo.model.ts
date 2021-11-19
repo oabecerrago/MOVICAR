@@ -70,16 +70,16 @@ export class Vehiculo extends Entity {
   costo: number;
 
   @property({
-    type: 'object',
+    type: 'string',
     required: true,
   })
-  fotografia: object;
+  fotografia: string;
 
   @property({
-    type: 'object',
-    required: true,
+    type: 'string',
+    required: false,
   })
-  video: object;
+  video: string;
 
   @property({
     type: 'number',
