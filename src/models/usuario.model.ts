@@ -1,5 +1,4 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
-import {Login} from './login.model';
 import {Administrador} from './administrador.model';
 import {Notificacion} from './notificacion.model';
 import {Asesor} from './asesor.model';
@@ -67,9 +66,6 @@ export class Usuario extends Entity {
     required: true,
   })
   ciudad: string;
-
-  @hasOne(() => Login, {keyTo: 'idUsuario'})
-  login: Login;
 
   @hasOne(() => Administrador, {keyTo: 'idUsuario'})
   administrador: Administrador;

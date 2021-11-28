@@ -3,7 +3,6 @@ export * from './alquiler.repository';
 export * from './asesor.repository';
 export * from './cliente.repository';
 export * from './lista.repository';
-export * from './login.repository';
 export * from './notificacion.repository';
 export * from './solicitud.repository';
 export * from './usuario.repository';

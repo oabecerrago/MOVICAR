@@ -1,8 +1,10 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
   Filter,
   FilterExcludingWhere,
+  model,
   repository,
   Where,
 } from '@loopback/repository';
@@ -17,13 +19,18 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Cliente} from '../models';
+import {Cliente, Usuario} from '../models';
 import {ClienteRepository} from '../repositories';
+import {AutenticacionService} from '../services';
+const fetch = require("node-fetch");
+import {usuario} from "../models/usuario.model"; //lo agregué
 
 export class ClienteController {
   constructor(
     @repository(ClienteRepository)
     public clienteRepository : ClienteRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService
   ) {}
 
   @post('/clientes')
@@ -45,9 +52,23 @@ export class ClienteController {
     cliente: Omit<Cliente, 'id'>,
   ): Promise<Cliente> {
 
-    
+    let clave = this.servicioAutenticacion.Generarclave();
+    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    cliente.clave = claveCifrada;
     let p = await this.clienteRepository.create(cliente);
-  }
+
+    //notificacion al cliente por correo electronico
+    let destino = usuario.telefono_celular;
+    let contenido = `hola, es un mensaje para ${usuario.nombre},
+                    su usuario es: ${usuario.telefono_celular}
+                    y su contraseña es ${clave}`;
+
+    fetch(`http://127.0.0.1:5000/sms?telefono=${destino}&contenido=${contenido}`)
+    .then((data: any)=>{
+    console.log(data);
+  })
+  return p;
+}
 
   @get('/clientes/count')
   @response(200, {

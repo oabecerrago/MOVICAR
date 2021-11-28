@@ -6,5 +6,4 @@ export * from './vehiculo.model';
 export * from './solicitud.model';
 export * from './alquiler.model';
 export * from './notificacion.model';
-export * from './login.model';
 export * from './lista.model';
