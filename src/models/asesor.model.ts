@@ -27,12 +27,12 @@ export class Asesor extends Entity {
     required: true,
   })
   idUsuario: string;
-  
+
   @property({
     type: 'string',
     required: false,
   })
-  contraseña: string;
+  clave: string;
 
   @hasMany(() => Solicitud, {keyTo: 'idAsesor'})
   solicituds: Solicitud[];

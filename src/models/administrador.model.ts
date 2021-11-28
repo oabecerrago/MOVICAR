@@ -37,7 +37,7 @@ export class Administrador extends Entity {
     type: 'string',
     required: false,
   })
-  contraseña: string;
+  clave: string;
 
 
   constructor(data?: Partial<Administrador>) {
