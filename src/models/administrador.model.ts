@@ -33,6 +33,12 @@ export class Administrador extends Entity {
   })
   creaOferta: boolean;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  contraseña: string;
+
 
   constructor(data?: Partial<Administrador>) {
     super(data);

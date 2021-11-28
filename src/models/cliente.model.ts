@@ -25,6 +25,12 @@ export class Cliente extends Entity {
     type: 'string',
   })
   solicitudId?: string;
+  
+  @property({
+    type: 'string',
+    required: false,
+  })
+  contraseña: string;
 
   constructor(data?: Partial<Cliente>) {
     super(data);
