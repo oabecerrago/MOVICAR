@@ -1,5 +1,4 @@
 export * from './ping.controller';
-export * from './usuario-login.controller';
 export * from './usuario-administrador.controller';
 export * from './usuario-notificacion.controller';
 export * from './notificacion-usuario.controller';
@@ -11,7 +10,6 @@ export * from './solicitud-cliente.controller';
 export * from './solicitud-alquiler.controller';
 export * from './solicitud-vehiculo.controller';
 export * from './vehiculo-solicitud.controller';
-export * from './login.controller';
 export * from './administrador.controller';
 export * from './alquiler.controller';
 export * from './asesor.controller';

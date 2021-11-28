@@ -74,9 +74,6 @@ export class Usuario extends Entity {
   })
   password: string;
 
-  @hasOne(() => Login, {keyTo: 'idUsuario'})
-  login: Login;
-
   @hasOne(() => Administrador, {keyTo: 'idUsuario'})
   administrador: Administrador;
 
