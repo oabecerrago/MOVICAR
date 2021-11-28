@@ -67,6 +67,12 @@ export class Usuario extends Entity {
   })
   ciudad: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  clave: string;
+
   @hasOne(() => Administrador, {keyTo: 'idUsuario'})
   administrador: Administrador;
 
