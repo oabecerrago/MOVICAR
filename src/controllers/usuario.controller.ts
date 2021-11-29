@@ -55,16 +55,15 @@ export class UsuarioController {
     let p = await this.usuarioRepository.create(usuario);
 
     //notificacion al cliente por correo electronico
-    let destino = usuario.telefono_celular;
-    let contenido = `hola, es un mensaje para ${usuario.nombre},
-                    su usuario es: ${usuario.telefono_celular}
-                    y su contraseña es ${clave}`;
+    let destino = usuario.correo_electronico;
+    let asunto ='Registro en la Plataforma de prueba';
+    let contenido =`Hola, es un mensaje para ${usuario.nombre}, su usuario es: ${usuario.correo_electronico} y su contraseña es: ${clave}`;
 
-    fetch(`http://127.0.0.1:5000/sms?telefono=${destino}&contenido=${contenido}`)
-    .then((data: any)=>{
-    console.log(data);
-  })
-  return p;
+    fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+    .then((data: any) => {
+      console.log(data);
+    })
+    return p;
 }
 
   @get('/usuarios/count')
