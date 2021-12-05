@@ -23,6 +23,7 @@ import {AutenticacionService} from '../services';
 import {UsuarioRepository} from '../repositories';
 import {service} from '@loopback/core';
 import {Llaves} from '../config/llaves';
+import {authenticate} from '@loopback/authentication';
 const fetch = require("node-fetch");
 
 export class UsuarioController {
@@ -59,6 +60,7 @@ export class UsuarioController {
       }
     }
 
+  
   @post('/usuarios')
   @response(200, {
     description: 'Usuario model instance',
