@@ -44,10 +44,10 @@ export class AutenticacionService {
   GenerarTokenJWT(usuario: Usuario){
     let token = jwt.sign({
       data:{
-      id: usuario.id,
-      correo: usuario.correo_electronico,
-      nombre: usuario.nombre +" "+ usuario.apellido
-    }
+        id: usuario.id,
+        correo: usuario.correo_electronico,
+        nombre: usuario.nombre +" "+ usuario.apellido
+      }
     },
     Llaves.claveJWT);
     return token;
