@@ -16,8 +16,9 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Usuario} from '../models';
+import {Credenciales, Usuario} from '../models';
 import {AutenticacionService} from '../services';
 import {UsuarioRepository} from '../repositories';
 import {service} from '@loopback/core';
@@ -31,6 +32,32 @@ export class UsuarioController {
     @service(AutenticacionService)
     public servicioAutenticacion: AutenticacionService
   ) {}
+    @post("/identificarUsuario",{
+      responses: {
+        '200':{
+          description:"Identificacion de Usuarios"
+        }
+      }
+    })
+
+    async identificarUsuario(
+      @requestBody() credenciales: Credenciales
+    ){
+      let p = await this.servicioAutenticacion.IdentificarUsuario(credenciales.usuario, credenciales.clave);
+      if (p){
+        let token = this.servicioAutenticacion.GenerarTokenJWT(p);
+        return{
+          datos: {
+            nombre: p.nombre,
+            correo: p.correo_electronico,
+            id: p.id
+          },
+          tk: token
+        }
+      } else{
+        throw new HttpErrors[401]("Datos invalidos")
+      }
+    }
 
   @post('/usuarios')
   @response(200, {

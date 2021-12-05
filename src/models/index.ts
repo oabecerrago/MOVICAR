@@ -7,3 +7,4 @@ export * from './solicitud.model';
 export * from './alquiler.model';
 export * from './notificacion.model';
 export * from './lista.model';
+export * from './credenciales.model';
